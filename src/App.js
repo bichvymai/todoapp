@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import "./App.css";
 import TaskList from "./components/TaskList";
+import AddTaskForm from "./components/AddTaskForm";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -52,28 +53,13 @@ function App() {
         showIncomplete={showIncomplete}
         setTaskStatus={setTaskStatus}
         removeTask={removeTask}
+        setShowIncomplete={setShowIncomplete}
       />
-      <div className="filter-wrapper">
-        <label htmlFor="filter" className="filter-label">
-          Show incompleted tasks only
-        </label>
-        <input
-          type="checkbox"
-          id="filter"
-          checked={showIncomplete}
-          onChange={(e) => setShowIncomplete(e.target.checked)}
-        ></input>
-      </div>
-      <form onSubmit={handleSubmit} className="form">
-        <label htmlFor="newitem">Add to the todo list</label>
-        <input
-          type="text"
-          id="newitem"
-          value={newTask}
-          onChange={handleInputChange}
-        ></input>
-        <button type="submit">Add Item</button>
-      </form>
+      <AddTaskForm
+        newTask={newTask}
+        handleSubmit={handleSubmit}
+        handleInputChange={handleInputChange}
+      />
     </div>
   );
 }
